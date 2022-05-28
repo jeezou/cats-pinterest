@@ -18,10 +18,14 @@ export default {
     return {
       num: 15,
       cards: [],
+      reloaded: true,
     };
   },
   created() {
     this.getPictures();
+  },
+  beforeRouteLeave() {
+    this.reloaded = false;
   },
   methods: {
     getPictures() {
@@ -40,10 +44,9 @@ export default {
 .home {
   width: 100%;
   box-sizing: border-box;
-  padding: 3%;
+  padding: 50px 3%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: 1fr;
-  gap: 2% 2%;
+  gap: 3.3vw;
 }
 </style>

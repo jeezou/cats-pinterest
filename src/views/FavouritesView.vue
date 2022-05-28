@@ -1,5 +1,5 @@
 <template>
-  <div class="favourites"></div>
+  <div class="favourites">favourites</div>
 </template>
 
 <script>
