@@ -1,9 +1,9 @@
 <template>
-  <div class="favourites">favourites page</div>
+  <div class="favourites"></div>
 </template>
 
 <script>
 export default {
-  name: "FavouritesView",
+  name: 'FavouritesView',
 };
 </script>

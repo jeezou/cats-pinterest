@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import NavComponent from "@/components/NavComponent.vue";
+import NavComponent from '@/components/NavComponent.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     NavComponent,
   },
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/reset.css";
+@import '@/styles/reset.css';
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -24,5 +24,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  width: 100vw;
+  max-width: 100%;
 }
 </style>

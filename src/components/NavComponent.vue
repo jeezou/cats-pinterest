@@ -8,9 +8,8 @@
 
 <script>
 export default {
-  name: "NavComponent",
+  name: 'NavComponent',
 };
 </script>
 
-<style>
-</style>
+<style></style>
