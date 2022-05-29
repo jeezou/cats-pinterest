@@ -28,4 +28,13 @@ export default {
   width: 100vw;
   max-width: 100%;
 }
+
+html {
+  height: 100%;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+body {
+  height: 100%;
+}
 </style>

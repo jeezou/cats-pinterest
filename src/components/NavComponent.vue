@@ -55,6 +55,8 @@ export default {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
 
+    transition: all 0.2s ease-in-out;
+
     &:hover {
       background: #34a0ff;
     }

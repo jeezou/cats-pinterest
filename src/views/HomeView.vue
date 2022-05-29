@@ -1,9 +1,37 @@
 <template>
-  <div class="home">
-    <template v-for="card in cards" :key="card.id">
-      <CardComponent :img="card.url" :id="card.id" :active="false" />
-    </template>
-    <button @click="appendCards">Load More</button>
+  <div class="wrapper">
+    <div class="home">
+      <template v-for="card in cards" :key="card.id">
+        <CardComponent :img="card.url" :id="card.id" :active="false" />
+      </template>
+    </div>
+    <button
+      @click="appendCards"
+      class="load-btn"
+      :class="{ 'load-btn--adding': adding }"
+    >
+      <span
+        class="load-btn__content"
+        :class="{ 'load-btn__content_default': !adding }"
+      >
+        I need more cuties!
+      </span>
+      <span
+        class="load-btn__content"
+        :class="{ 'load-btn__content_adding': adding }"
+      >
+        Let's see what I can do..
+      </span>
+    </button>
+    <div
+      class="overflow"
+      :class="{
+        overflow_active: loading,
+      }"
+    >
+      Wait a bit..
+      <p>Searching best kitties</p>
+    </div>
   </div>
 </template>
 
@@ -20,10 +48,15 @@ export default {
       num: 15,
       cards: [],
       reloaded: true,
+      loading: true,
+      adding: false,
     };
   },
   created() {
-    this.appendCards();
+    this.getPictures().then((cards) => {
+      this.cards.push(...cards);
+      this.loading = false;
+    });
   },
   methods: {
     async getPictures() {
@@ -38,7 +71,20 @@ export default {
       return cards;
     },
     appendCards() {
-      this.getPictures().then((cards) => this.cards.push(...cards));
+      this.adding = true;
+      setTimeout(
+        () =>
+          window.scrollTo(
+            0,
+            document.body.scrollHeight || document.documentElement.scrollHeight
+          ),
+        0
+      );
+
+      this.getPictures().then((cards) => {
+        this.cards.push(...cards);
+        this.adding = false;
+      });
     },
   },
 };
@@ -52,5 +98,82 @@ export default {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 3.3vw;
+}
+
+.load-btn {
+  outline: none;
+  border: none;
+  background: none;
+
+  width: 20%;
+  margin: 0 20px 30px;
+
+  padding: 10px;
+
+  box-sizing: border-box;
+
+  cursor: pointer;
+
+  background: #2196f3;
+  color: #fafafa;
+  font-size: 1.2rem;
+
+  transition: all 0.2s ease-in-out;
+
+  &--adding {
+    border-radius: 50px;
+    width: 80%;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background: #34a0ff;
+  }
+
+  &__content {
+    position: absolute;
+    opacity: 0;
+    &_default {
+      position: relative;
+      opacity: 1;
+    }
+    &_adding {
+      position: relative;
+      transition: opacity 0.3s ease-in-out;
+      opacity: 1;
+    }
+  }
+}
+
+.overflow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: #fff;
+
+  color: rgba(0, 0, 0, 0.591);
+  font-weight: 800;
+  font-size: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 2vh;
+
+  opacity: 0;
+
+  transition: all 0.4s ease-in-out;
+
+  pointer-events: none;
+
+  &_active {
+    z-index: 1;
+    opacity: 1;
+    pointer-events: all;
+  }
 }
 </style>
