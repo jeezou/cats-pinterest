@@ -105,10 +105,10 @@ export default {
   border: none;
   background: none;
 
-  width: 20%;
+  // width: fit-content;
   margin: 0 20px 30px;
 
-  padding: 10px;
+  padding: 10px 5%;
 
   box-sizing: border-box;
 
@@ -116,13 +116,15 @@ export default {
 
   background: #2196f3;
   color: #fafafa;
-  font-size: 1.2rem;
+  font-size: calc(0.5vw + 1rem);
 
   transition: all 0.2s ease-in-out;
 
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
+
   &--adding {
     border-radius: 50px;
-    width: 80%;
+    padding: 10px 30%;
     pointer-events: none;
   }
 
@@ -156,7 +158,7 @@ export default {
 
   color: rgba(0, 0, 0, 0.591);
   font-weight: 800;
-  font-size: 2rem;
+  font-size: calc(1vw + 1rem);
 
   display: flex;
   align-items: center;
@@ -174,6 +176,41 @@ export default {
     z-index: 1;
     opacity: 1;
     pointer-events: all;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .home {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .home {
+    row-gap: 5vh;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .load-btn {
+    &--adding {
+      border-radius: 50px;
+      padding: 10px 15%;
+      pointer-events: none;
+    }
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .home {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 </style>

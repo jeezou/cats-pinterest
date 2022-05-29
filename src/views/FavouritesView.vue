@@ -54,4 +54,32 @@ export default {
   grid-template-columns: repeat(5, 1fr);
   gap: 3.3vw;
 }
+
+@media screen and (max-width: 1280px) {
+  .favourites {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .favourites {
+    row-gap: 5vh;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .favourites {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .favourites {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 </style>
