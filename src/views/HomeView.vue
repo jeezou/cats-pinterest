@@ -1,8 +1,9 @@
 <template>
   <div class="home">
     <template v-for="card in cards" :key="card.id">
-      <CardComponent :img="card.url" :id="card.id" />
+      <CardComponent :img="card.url" :id="card.id" :active="false" />
     </template>
+    <button @click="appendCards">Load More</button>
   </div>
 </template>
 
@@ -22,19 +23,22 @@ export default {
     };
   },
   created() {
-    this.getPictures();
-  },
-  beforeRouteLeave() {
-    this.reloaded = false;
+    this.appendCards();
   },
   methods: {
-    getPictures() {
+    async getPictures() {
+      const cards = [];
       for (let i = 0; i < this.num; i++) {
-        fetch('https://api.thecatapi.com/v1/images/search?mime_types=jpg,png')
-          .then((response) => response.json())
-          .then((data) => this.cards.push({ url: data[0].url, id: data[0].id }))
-          .catch((err) => console.error(err));
+        const res = await fetch(
+          'https://api.thecatapi.com/v1/images/search?mime_types=jpg,png'
+        );
+        const data = await res.json();
+        cards.push({ url: data[0].url, id: data[0].id });
       }
+      return cards;
+    },
+    appendCards() {
+      this.getPictures().then((cards) => this.cards.push(...cards));
     },
   },
 };
