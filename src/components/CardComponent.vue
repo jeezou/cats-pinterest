@@ -62,6 +62,7 @@ export default {
         this.active = true;
       } else {
         favs = favs.filter((el) => el.id != this.id);
+        this.active = false;
       }
       this.$emit('rerender', favs);
       localStorage.setItem('favs', JSON.stringify(favs));
